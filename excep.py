@@ -6,5 +6,3 @@ def check_inp_data(val: str):
     else:
         print(f"Error, {val} is not an appropriate argument! Pleas try again.")
 
-
-check_inp_data(input("Enter: "))
