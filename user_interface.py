@@ -10,7 +10,7 @@ def load_menu_operation():
     menu = {}
     menu[1] = ('Сложение', 'sum')
     menu[2] = ('Вычитание', 'sub')
-    menu[3] = ('Умножение', 'mul')
+    menu[3] = ('Умножение', 'mult')
     menu[4] = ('Деление', 'div')
     menu[5] = ('Возведение в степень', 'pow')
     menu[6] = ('Вычисление корня числа', 'sqrt')
@@ -20,9 +20,9 @@ def load_menu_operation():
 
 def load_menu_operation_div():
     menu = {}
-    menu[1] = ('Обычное деление', '/')
-    menu[2] = ('Целочисленное деление', '//')
-    menu[3] = ('Остаток от деления', '%')
+    menu[1] = ('Обычное деление', 'div')
+    menu[2] = ('Целочисленное деление', 'div_int')
+    menu[3] = ('Остаток от деления', 'rem_div')
     menu[0] = ('назад', 'back')
     return menu
 
@@ -43,7 +43,7 @@ def get_select_menu(menu):
 
 
 def input_rational_number(title=''):
-    print('Введите рациональное число')
+    print('Введите рациональное число: ')
     number_str = input(f'{title}:')
     while not number_str.isdigit():
         print('введённая строка должна быть числом!')
@@ -57,17 +57,20 @@ def print_rational_number(value, prefix=''):
 
 def input_complex_number(postfix=''):
     print('Комплексное число имеет вид A+Bi, где A и B – действительные числа, i – так называемая мнимая единица')
-    numberA_str = input(f'Введите значение A (действительная часть) комплексного числа {postfix}:')
+    numberA_str = input(f'Введите значение A {postfix}: ')
     while not numberA_str.replace('-', '').replace('.', '').isdecimal():
         print('введённая строка должна быть числом!')
-        numberA_str = input(f'Введите значение A (действительная часть) комплексного числа {postfix}:')
+        numberA_str = input(f'Введите значение A {postfix}: ')
 
-    numberB_str = input(f'Введите значение B (мнимая часть) комплексного числа {postfix}:')
-    while not numberA_str.replace('-', '').replace('.', '').isdigit():
+    numberB_str = input(f'Введите значение B {postfix}: ')
+    while not numberB_str.replace('-', '').replace('.', '').isdigit():
         print('введённая строка должна быть числом!')
-        numberB_str = input(f'Введите значение B (мнимая часть) комплексного числа {postfix}:')
+        numberB_str = input(f'Введите значение B {postfix}: ')
 
-    return complex(float(numberA_str), float(numberB_str))
+    complex_number = complex(float(numberA_str), float(numberB_str))
+    print(complex_number)
+
+    return complex_number
 
 
 def print_complex_number(value, prefix=''):
@@ -83,25 +86,25 @@ def input_operation_data(operator, type_number='rational'):
     if operator == 'sum':
         number1 = input_func_number('Введите 1-е слогаемое')
         number2 = input_func_number('Введите 2-е слогаемое')
-        return (number1, number2)
+        return [number1, number2]
     if operator == 'sub':
         number1 = input_func_number('Введите уменьшаемое')
         number2 = input_func_number('Введите вычитаемое')
-        return (number1, number2)
-    if operator == 'mul':
+        return [number1, number2]
+    if operator == 'mult':
         number1 = input_func_number('Введите 1-й множитель')
         number2 = input_func_number('Введите 2-й множитель')
-        return (number1, number2)
-    if operator == '/' or operator == '//' or operator == '%':
+        return [number1, number2]
+    if operator == 'div' or operator == 'div_int' or operator == 'rem_div':
         number1 = input_func_number('Введите делимое')
         number2 = input_func_number('Введите делитель')
-        return (number1, number2)
-    if operator == '**':
+        return [number1, number2]
+    if operator == 'pow':
         number1 = input_func_number('Введите число')
         number2 = input_func_number('Введите степень')
-        return (number1, number2)
+        return [number1, number2]
     if operator == 'sqrt':
         number1 = input_func_number('Введите число')
-        return (number1)
+        return [number1]
     else:
         return None

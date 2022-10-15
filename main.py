@@ -1,5 +1,5 @@
 import user_interface as ui
-#import logger as log
+# import logger as log
 import complex as cn
 import rational as rn
 
@@ -20,15 +20,19 @@ if __name__ == '__main__':
             continue
 
         operator = ''
-        if select_main_menu == 4:
-            operations_menu_div = ui.load_menu_operation_div()
-            select_operation_menu_div = ui.get_select_menu(operations_menu_div)
-            operator = operations_menu_div[select_operation_menu_div][1]
+        if select_operation_menu == 4:
+            operator = 'div'
+            if select_main_menu != 2:
+                operations_menu_div = ui.load_menu_operation_div()
+                ui.print_menu('Деление', operations_menu_div)
+                select_operation_menu_div = ui.get_select_menu(operations_menu_div)
+                operator = operations_menu_div[select_operation_menu_div][1]
         else:
             operator = operations_menu[select_operation_menu][1]
 
         if select_main_menu == 1:
-            res = rn.calc(operator, ui.input_operation_data(operator, 'rational'))
+            data = ui.input_operation_data(operator, 'rational')
+            res = rn.calc(operator, data)
         else:
             res = cn.calc(operator, ui.input_operation_data(operator, 'complex'))
-        # print_calc_result(res)
+        print(f'Результат: {res}')
