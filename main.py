@@ -34,15 +34,25 @@ if __name__ == '__main__':
         # запуск выполнения выбранной операции
         if select_main_menu == 1:
             input_data = ui.input_operation_data(operator, 'rational')
-            res = rn.calc(operator, input_data)
+            if input_data is None:
+                res = None
+                print('Выполнение операции прервано!')
+            else:
+                res = rn.calc(operator, input_data)
+                print(f'Результат: {res}')
         else:
             input_data = ui.input_operation_data(operator, 'complex')
-            res = cn.calc(operator, input_data)
-        print(f'Результат: {res}')
+            if input_data is None:
+                res = None
+                print('Выполнение операции прервано!')
+            else:
+                res = cn.calc(operator, input_data)
+                print(f'Результат: {res}')
 
         #логирование - запись результат в файл CSV
-        input1 = input_data[0]
-        input2 = None
-        if len(input_data) > 1:
-            input2 = input_data[1]
-        log.operation_logger(input1, operator, input2, res)
+        if res is not None:
+            input1 = input_data[0]
+            input2 = None
+            if len(input_data) > 1:
+                input2 = input_data[1]
+            log.operation_logger(input1, operator, input2, res)

@@ -38,11 +38,11 @@ def print_menu(menu_title, menu_data):
 
 
 def get_select_menu(menu):
-    select = int(input('выберите пункт меню: '))
-    while select not in menu.keys():
+    select_str = input('выберите пункт меню: ')
+    while not select_str.isdigit() or int(select_str) not in menu.keys():
         print('error - указан неверный пункт меню!')
-        select = int(input('выберите пункт меню: '))
-    return select
+        select_str = input('выберите пункт меню: ')
+    return int(select_str)
 
 
 def input_rational_number(title=''):
@@ -107,6 +107,9 @@ def input_operation_data(operator, type_number='rational'):
     if operator == 'div' or operator == 'div_int' or operator == 'rem_div':
         number1 = input_func_number('Введите делимое')
         number2 = input_func_number('Введите делитель')
+        if number2 == 0:
+            print('Делить на 0 нельзя!')
+            return None
         return [number1, number2]
     if operator == 'pow':
         number1 = input_func_number('Введите число')
