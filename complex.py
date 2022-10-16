@@ -8,7 +8,7 @@ import model_sqrt as complex_sqrt
 
 def calc(operator, args):
     if operator == 'sum':
-        return complex_sum.sum(args[0], args[1])
+        return complex_sum.f_sum(args[0], args[1])
     elif operator == 'sub':
         return complex_sub.sub(args[0], args[1])
     elif operator == 'mult':
