@@ -49,7 +49,7 @@ if __name__ == '__main__':
                 res = cn.calc(operator, input_data)
                 print(f'Результат: {res}')
 
-        #логирование - запись результат в файл CSV
+        # логирование - запись результат в файл CSV
         if res is not None:
             input1 = input_data[0]
             input2 = None
