@@ -8,7 +8,7 @@ import model_sqrt as rational_sqrt
 
 def calc(operator, args):
     if operator == 'sum':
-        return rational_sum.sum(args[0], args[1])
+        return rational_sum.f_sum(args[0], args[1])
     elif operator == 'sub':
         return rational_sub.sub(args[0], args[1])
     elif operator == 'mult':
