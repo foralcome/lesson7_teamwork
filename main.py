@@ -1,5 +1,5 @@
 import user_interface as ui
-# import logger as log
+import logger as log
 import complex as cn
 import rational as rn
 
@@ -19,6 +19,7 @@ if __name__ == '__main__':
         if select_operation_menu == 0:
             continue
 
+        # определение оператора вычисления
         operator = ''
         if select_operation_menu == 4:
             operator = 'div'
@@ -30,9 +31,18 @@ if __name__ == '__main__':
         else:
             operator = operations_menu[select_operation_menu][1]
 
+        # запуск выполнения выбранной операции
         if select_main_menu == 1:
-            data = ui.input_operation_data(operator, 'rational')
-            res = rn.calc(operator, data)
+            input_data = ui.input_operation_data(operator, 'rational')
+            res = rn.calc(operator, input_data)
         else:
-            res = cn.calc(operator, ui.input_operation_data(operator, 'complex'))
+            input_data = ui.input_operation_data(operator, 'complex')
+            res = cn.calc(operator, input_data)
         print(f'Результат: {res}')
+
+        #логирование - запись результат в файл CSV
+        input1 = input_data[0]
+        input2 = None
+        if len(input_data) > 1:
+            input2 = input_data[1]
+        log.operation_logger(input1, operator, input2, res)
