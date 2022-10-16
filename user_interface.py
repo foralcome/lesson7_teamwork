@@ -1,3 +1,6 @@
+import excep
+
+
 def load_menu_main():
     menu = {}
     menu[1] = ('Рациональные числами', 'rational')
@@ -45,10 +48,12 @@ def get_select_menu(menu):
 def input_rational_number(title=''):
     print('Введите рациональное число: ')
     number_str = input(f'{title}:')
-    while not number_str.isdigit():
+    number = excep.check_input_data(number_str)
+    while number is None:
         print('введённая строка должна быть числом!')
         number_str = input(f'{title}:')
-    return int(number_str)
+        number = excep.check_input_data(number_str)
+    return number
 
 
 def print_rational_number(value, prefix=''):
@@ -58,16 +63,20 @@ def print_rational_number(value, prefix=''):
 def input_complex_number(postfix=''):
     print('Комплексное число имеет вид A+Bi, где A и B – действительные числа, i – так называемая мнимая единица')
     numberA_str = input(f'Введите значение A {postfix}: ')
-    while not numberA_str.replace('-', '').replace('.', '').isdecimal():
+    numberA = excep.check_input_data(numberA_str)
+    while numberA is None:
         print('введённая строка должна быть числом!')
         numberA_str = input(f'Введите значение A {postfix}: ')
+        numberA = excep.check_input_data(numberA_str)
 
     numberB_str = input(f'Введите значение B {postfix}: ')
-    while not numberB_str.replace('-', '').replace('.', '').isdigit():
+    numberB = excep.check_input_data(numberB_str)
+    while numberB is None:
         print('введённая строка должна быть числом!')
         numberB_str = input(f'Введите значение B {postfix}: ')
+        numberB = excep.check_input_data(numberB_str)
 
-    complex_number = complex(float(numberA_str), float(numberB_str))
+    complex_number = complex(numberA, numberB)
     print(complex_number)
 
     return complex_number
