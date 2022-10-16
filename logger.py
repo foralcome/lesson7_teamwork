@@ -7,4 +7,3 @@ def operation_logger(val_1, op_type, val_2, res):
     date = dat.today()
     with open('log.csv', 'a') as file:
         file.write('{} {} | {} {} {} = {};\n'.format(date, time, val_1, op_type, val_2, res))
-
