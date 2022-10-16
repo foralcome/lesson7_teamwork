@@ -2,31 +2,19 @@ import excep
 
 
 def load_menu_main():
-    menu = {}
-    menu[1] = ('Рациональные числами', 'rational')
-    menu[2] = ('Комплексные числами', 'complex')
-    menu[0] = ('выход', 'exit')
+    menu = {1: ('Рациональные числа', 'rational'), 2: ('Комплексные числа', 'complex'), 0: ('выход', 'exit')}
     return menu
 
 
 def load_menu_operation():
-    menu = {}
-    menu[1] = ('Сложение', 'sum')
-    menu[2] = ('Вычитание', 'sub')
-    menu[3] = ('Умножение', 'mult')
-    menu[4] = ('Деление', 'div')
-    menu[5] = ('Возведение в степень', 'pow')
-    menu[6] = ('Вычисление корня числа', 'sqrt')
-    menu[0] = ('назад', 'back')
+    menu = {1: ('Сложение', 'sum'), 2: ('Вычитание', 'sub'), 3: ('Умножение', 'mult'), 4: ('Деление', 'div'),
+            5: ('Возведение в степень', 'pow'), 6: ('Вычисление квадратного корня числа', 'sqrt'), 0: ('назад', 'back')}
     return menu
 
 
 def load_menu_operation_div():
-    menu = {}
-    menu[1] = ('Обычное деление', 'div')
-    menu[2] = ('Целочисленное деление', 'div_int')
-    menu[3] = ('Остаток от деления', 'rem_div')
-    menu[0] = ('назад', 'back')
+    menu = {1: ('Обычное деление', 'div'), 2: ('Целочисленное деление', 'div_int'),
+            3: ('Остаток от деления', 'rem_div'), 0: ('назад', 'back')}
     return menu
 
 
@@ -46,7 +34,7 @@ def get_select_menu(menu):
 
 
 def input_rational_number(title=''):
-    print('Введите рациональное число: ')
+    print('Введите рациональное число')
     number_str = input(f'{title}:')
     number = excep.check_input_data(number_str)
     while number is None:
@@ -62,21 +50,21 @@ def print_rational_number(value, prefix=''):
 
 def input_complex_number(postfix=''):
     print('Комплексное число имеет вид A+Bi, где A и B – действительные числа, i – так называемая мнимая единица')
-    numberA_str = input(f'Введите значение A {postfix}: ')
-    numberA = excep.check_input_data(numberA_str)
-    while numberA is None:
+    number_a_str = input(f'Введите значение A {postfix}: ')
+    number_a = excep.check_input_data(number_a_str)
+    while number_a is None:
         print('введённая строка должна быть числом!')
-        numberA_str = input(f'Введите значение A {postfix}: ')
-        numberA = excep.check_input_data(numberA_str)
+        number_a_str = input(f'Введите значение A {postfix}: ')
+        number_a = excep.check_input_data(number_a_str)
 
-    numberB_str = input(f'Введите значение B {postfix}: ')
-    numberB = excep.check_input_data(numberB_str)
-    while numberB is None:
+    number_b_str = input(f'Введите значение B {postfix}: ')
+    number_b = excep.check_input_data(number_b_str)
+    while number_b is None:
         print('введённая строка должна быть числом!')
-        numberB_str = input(f'Введите значение B {postfix}: ')
-        numberB = excep.check_input_data(numberB_str)
+        number_b_str = input(f'Введите значение B {postfix}: ')
+        number_b = excep.check_input_data(number_b_str)
 
-    complex_number = complex(numberA, numberB)
+    complex_number = complex(number_a, number_b)
     print(complex_number)
 
     return complex_number
